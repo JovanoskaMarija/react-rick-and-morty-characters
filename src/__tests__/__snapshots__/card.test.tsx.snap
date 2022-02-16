@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`card matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="card"
+  >
+    <img
+      alt="Rick Sanchez"
+      src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+    />
+    <div
+      class="info-card"
+    >
+      <span
+        class="character-name"
+      >
+        Rick Sanchez
+      </span>
+      <div>
+        <div
+          class="info"
+        >
+          <span
+            class="label"
+          >
+            gender:
+          </span>
+          <span
+            class="value"
+          >
+            Male
+          </span>
+        </div>
+        <div
+          class="info"
+        >
+          <span
+            class="label"
+          >
+            species:
+          </span>
+          <span
+            class="value"
+          >
+            Human
+          </span>
+        </div>
+        <div
+          class="info"
+        >
+          <span
+            class="label"
+          >
+            status:
+          </span>
+          <span
+            class="value"
+          >
+            Alive
+          </span>
+        </div>
+        <div
+          class="info"
+        >
+          <span
+            class="label"
+          >
+            episodes:
+          </span>
+          <span
+            class="value"
+          >
+            23
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
