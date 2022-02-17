@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react'
 import { InputText } from 'primereact/inputtext'
 import { Dropdown } from 'primereact/dropdown'
 
-interface Props {
+interface IFilters {
   nameFilter: string
   setNameFilter: Dispatch<SetStateAction<string>>
   statusFilter: string
@@ -15,7 +15,7 @@ function Filters({
   setNameFilter,
   statusFilter,
   setStatusFilter,
-}: Props) {
+}: IFilters) {
   const statusOptions = [
     { label: 'Any', value: '' },
     { label: 'Alive', value: 'alive' },

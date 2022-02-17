@@ -1,16 +1,16 @@
 import './Card.scss'
 import { Character } from '../../types/types'
 
-interface Props {
+interface ICard {
   character: Character
 }
-function Card({ character }: Props) {
+
+function Card({ character }: ICard) {
   return (
     <div className="card">
       <img src={character.image} alt={`${character.name}`} />
       <div className="info-card">
         <span className="character-name">{character.name}</span>
-
         <div>
           <div className="info">
             <span className="label">gender:</span>

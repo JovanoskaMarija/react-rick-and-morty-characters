@@ -1,6 +1,6 @@
 import React from 'react'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import Filters from '../containers/RMCharacters/List/Filters/Filters'
+import Filters from '../components/Filters/Filters'
 
 describe('Filters component', () => {
   const name = ''

@@ -1,9 +1,9 @@
 export function objectToQueryString(
   params: Record<string, string | number | null | undefined>
 ) {
-  let filtersString = Object.keys(params)
+  const filtersString = Object.keys(params)
     .map((key) => {
-      let value = params[key]
+      const value = params[key]
 
       if (
         value === undefined ||

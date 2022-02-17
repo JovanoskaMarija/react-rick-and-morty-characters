@@ -7,12 +7,12 @@ import { objectToQueryString } from '../../../utils/helpers/objectToQueryString'
 import { CharacterData, Character } from '../../../types/types'
 
 import instance from '../../../api/instance'
-import Filters from './Filters/Filters'
+import Filters from '../../../components/Filters/Filters'
 import useDebounceHook from '../../../utils/hooks/useDebounceHook'
 import Card from '../../../components/Card/Card'
 import Spinner from '../../../components/Spinner/Spinner'
 
-interface Data {
+interface ICharactersData {
   results: CharacterData[]
   info: {
     pages: number
@@ -32,13 +32,13 @@ function List() {
 
   const [statusFilter, setStatusFilter] = useState<string>('')
   const [nameFilter, setNameFilter] = useState<string>('')
-  const debouncedNameFilter = useDebounceHook(nameFilter, 250)
+  const debouncedNameFilter = useDebounceHook(nameFilter, 350)
 
   const observer = useRef(
     new IntersectionObserver((entries) => {
       const first = entries[0]
       if (first.isIntersecting) {
-        setPage((no) => no + 1)
+        setPage((pageNum) => pageNum + 1)
       }
     })
   )
@@ -55,17 +55,17 @@ function List() {
     setIsLoading(true)
     setError('')
     instance
-      .get<Data>('character' + filters)
+      .get<ICharactersData>(`character${filters}`)
       .then(({ data }) => {
-        let newCharacters = data.results.map((c) => {
+        const newCharacters = data.results.map((character) => {
           return {
-            id: c.id,
-            name: c.name,
-            image: c.image,
-            gender: c.gender,
-            species: c.species,
-            status: c.status,
-            episodes: c.episode.length,
+            id: character.id,
+            name: character.name,
+            image: character.image,
+            gender: character.gender,
+            species: character.species,
+            status: character.status,
+            episodes: character.episode.length,
           }
         })
 
@@ -102,7 +102,7 @@ function List() {
 
   useEffect(() => {
     if (newCharacters.length) {
-      let newCharactersData = [...characters, ...newCharacters]
+      const newCharactersData = [...characters, ...newCharacters]
 
       setCharacters(newCharactersData)
       setNewCharacters([])
@@ -118,22 +118,31 @@ function List() {
           statusFilter={statusFilter}
           setStatusFilter={setStatusFilter}
         />
-        {error.length > 0 && <div className="error-message">{error}</div>}
+        {error.length > 0 && !isLoading && (
+          <div className="error-message">{error}</div>
+        )}
 
         {isLoading && <Spinner />}
         <div className="list">
           {characters.length > 0 &&
-            characters.map((c, i) => {
+            characters.map((character, i) => {
               return i === characters.length - 1 &&
                 !isLoading &&
                 lastPage &&
                 page !== lastPage ? (
-                <div key={c.id} ref={setLastElement} className="item">
-                  <Card character={c} />
+                <div
+                  key={`${character.id} - ${character.name}`}
+                  ref={setLastElement}
+                  className="item"
+                >
+                  <Card character={character} />
                 </div>
               ) : (
-                <div key={c.id} className="item">
-                  <Card character={c} />
+                <div
+                  key={`${character.id} - ${character.name}`}
+                  className="item"
+                >
+                  <Card character={character} />
                 </div>
               )
             })}

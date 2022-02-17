@@ -1,9 +1,9 @@
-import RMCharacters from './containers/RMCharacters/RMCharacters'
+import Dashboard from './containers/Dashboard'
 
 function App() {
   return (
     <div>
-      <RMCharacters />
+      <Dashboard />
     </div>
   )
 }
