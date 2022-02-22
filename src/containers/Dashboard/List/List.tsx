@@ -96,7 +96,6 @@ function List() {
   }, [lastElement])
 
   useEffect(() => {
-    setPage(1)
     setCharacters([])
   }, [debouncedNameFilter, statusFilter])
 
@@ -117,6 +116,7 @@ function List() {
           setNameFilter={setNameFilter}
           statusFilter={statusFilter}
           setStatusFilter={setStatusFilter}
+          setPage={setPage}
         />
         {error.length > 0 && !isLoading && (
           <div className="error-message">{error}</div>

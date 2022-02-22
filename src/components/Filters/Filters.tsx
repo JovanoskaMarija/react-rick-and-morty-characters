@@ -8,6 +8,7 @@ interface IFilters {
   setNameFilter: Dispatch<SetStateAction<string>>
   statusFilter: string
   setStatusFilter: Dispatch<SetStateAction<string>>
+  setPage: Dispatch<SetStateAction<number>>
 }
 
 function Filters({
@@ -15,6 +16,7 @@ function Filters({
   setNameFilter,
   statusFilter,
   setStatusFilter,
+  setPage,
 }: IFilters) {
   const statusOptions = [
     { label: 'Any', value: '' },
@@ -31,7 +33,10 @@ function Filters({
           id="name"
           name="name"
           value={nameFilter}
-          onChange={(e) => setNameFilter(e.target.value)}
+          onChange={(e) => {
+            setPage(1)
+            setNameFilter(e.target.value)
+          }}
           data-testid="filter-name"
         />
       </div>
@@ -43,7 +48,10 @@ function Filters({
           name="status"
           value={statusFilter}
           options={statusOptions}
-          onChange={(e) => setStatusFilter(e.value)}
+          onChange={(e) => {
+            setPage(1)
+            setStatusFilter(e.value)
+          }}
           placeholder="Select status"
         />
       </form>
